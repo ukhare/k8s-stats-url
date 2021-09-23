@@ -1,0 +1,3 @@
+- job_name: 'sample_external'
+      static_configs:
+      - targets: ['10.100.5.160:80']

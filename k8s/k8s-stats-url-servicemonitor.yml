@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+     prometheus.io/scrape: "true"
+  namespace: monitoring
+  name: k8s-stats-url
+  labels:
+    app: k8s-stats-url
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: k8s-stats-url
+      release: prometheus-operator
+  namespaceSelector:
+      matchNames:
+      - monitoring
+  endpoints:
+  - port: metrics
+    interval: 10s
+    honorLabels: true
