@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+     prometheus.io/scrape: "true"
+  namespace: monitoring
+  name: k8s-stats-url
+  namespace: monitoring
+  labels:
+    app: k8s-stats-url
+    release: prometheus-operator
+spec:
+  externalName: internet-url
+  ports:
+  - name: metrics
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: ExternalName

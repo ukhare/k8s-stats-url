@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  annotations:
+     prometheus.io/scrape: "true"
+  namespace: monitoring
+  name: k8s-stats-url
+  labels:
+    app: k8s-stats-url
+subsets:
+- addresses:
+  - ip: 3.131.77.145
+  ports:
+  - name: metrics
+    port: 80
+    protocol: TCP
