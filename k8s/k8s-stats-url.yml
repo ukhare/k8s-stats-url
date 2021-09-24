@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: k8s-stats-url
-        image: 699279841026.dkr.ecr.us-east-2.amazonaws.com/connections/k8s-stats-url
+        image: <docker registry url>/k8s-stats-url
         env:
         - name: URLS
           valueFrom:
