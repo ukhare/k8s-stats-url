@@ -7,10 +7,8 @@ urls="https://httpstat.us/200","https://httpstat.us/503"
 timeoutInSec=2
 port=8080
 
-urlStatus = Gauge('k8s-stats-url_up',
-                    'Internet Urls status', ['url'])
-urlResp = Gauge('k8s-stats-url_response_ms',
-                    'Internet Urls response in milliseconds', ['url'])
+urlStatus = Gauge('k8s_stats_url_up','Internet Urls status', ['url'])
+urlResp = Gauge('k8s_stats_url_response_ms','Internet Urls response in milliseconds', ['url'])
 class AccessWebURL:
     def __init__(self,urls,timeoutInSec,urlStatus,urlResp):
         self.urls = urls

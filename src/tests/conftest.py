@@ -1,16 +1,21 @@
 import pytest
 from prometheus_client import Gauge, CollectorRegistry, generate_latest
-from app import ProcessURL
+from app import AccessWebURL
 
 registry =  CollectorRegistry()
-urlState = Gauge('test_external_url_up',
-                    'External URL state', ['url'],registry=registry)
-urlResp = Gauge('test_external_url_response_ms',
-                    'External URL response in milliseconds', ['url'], registry=registry)
+
+#set variables
+urls="https://httpstat.us/200","https://httpstat.us/503"
+timeoutInSec=2
+port=8080
+
+urlStatus = Gauge('test_k8s_stats_url_up', 'Internet Urls status', ['url'])
+urlResp = Gauge('test_k8s_stats_url_response_ms','Internet Urls response in milliseconds', ['url'])
+
 
 @pytest.fixture
 def create_processurl():
-    processUrlObj = ProcessURL(['https://httpstat.us/503'],2,urlState,urlResp)
-    processUrlObj.request_loop()
+    hitUrlObj = AccessWebURL(['https://httpstat.us/503'],timeoutInSec,urlStatus,urlResp)
+    hitUrlObj.send_concurrent_req()
     result = generate_latest(registry).decode('utf8').split('\n')
     return result
