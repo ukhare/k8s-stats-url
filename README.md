@@ -180,9 +180,13 @@ Output should look like:
 		endpoint="metrics"instance="<ip or url of load balancer of k8s-stats-url service>:80"job="k8s-stats-url"namespace="monitoring"service="k8s-stats-url"
 		8.558s ago	163.204ms	
 
+![image](https://user-images.githubusercontent.com/45262478/134632255-49b2a904-b67c-4050-ac65-5dccf664b3a5.png)
+
+
 #created servicemonitor should be visible in below prometheus url
 
 		http://prometheus-ip or loadblancer url:9090/config
+		
 
 -- search for "k8s-stats-url" and you should be able to see below
 
@@ -206,8 +210,25 @@ Output should look like:
  		   regex: k8s-stats-url
  		   replacement: $1
  		   action: keep
+		
+<img width="705" alt="Screenshot 2021-09-24 at 12 10 54 PM" src="https://user-images.githubusercontent.com/45262478/134632351-6021a96d-ce79-485a-80ba-2ca2335aad4b.png">
+
+-- prometheus graphs
+
+<img width="1679" alt="Screenshot 2021-09-24 at 12 16 29 PM" src="https://user-images.githubusercontent.com/45262478/134632624-dfcb8f57-10a4-4010-aa24-939a815c038e.png">
+<img width="1676" alt="Screenshot 2021-09-24 at 12 16 58 PM" src="https://user-images.githubusercontent.com/45262478/134632645-3a48b3c0-3c10-4435-b421-2b28ea938974.png">
+
 
 #cat below file and paste on grafana import to see the metrics
 
 		cat grafana/grafana-k8s-stats-url.json
 
+-- after uploading json we can see below graphs:
+<img width="1680" alt="Screenshot 2021-09-24 at 12 08 47 PM" src="https://user-images.githubusercontent.com/45262478/134632714-e6274008-3c29-48f4-a73a-3d366bae223c.png">
+
+<img width="1679" alt="Screenshot 2021-09-24 at 12 09 17 PM" src="https://user-images.githubusercontent.com/45262478/134632734-a6d53f1a-9899-40ab-94e2-6e000e6f6187.png">
+
+		
+<img width="1672" alt="Screenshot 2021-09-24 at 12 09 34 PM" src="https://user-images.githubusercontent.com/45262478/134632750-6ae7943c-732f-4d80-a5da-aacd59530245.png">
+
+		
